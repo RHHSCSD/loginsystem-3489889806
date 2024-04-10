@@ -13,7 +13,8 @@ public class LoginFrame extends javax.swing.JPanel {
     RegistrationSystem System = new RegistrationSystem();
 
     public static void main(String[] args) {
-
+        LoginFrame d = new LoginFrame();
+        d.setVisible(true);
     }
 
     /**

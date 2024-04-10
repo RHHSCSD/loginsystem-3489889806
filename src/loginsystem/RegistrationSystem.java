@@ -6,10 +6,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import static java.lang.Character.*;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -21,14 +24,14 @@ import java.util.Scanner;
  */
 public final class RegistrationSystem {
 
-    final static String DEFAULTFILELOCATION = "userbase.txt";
+    final static String DEFAULTFILELOCATION = "userbase.dsv";
     final static int PASSWORDMINIMUMLENGTH = 4;
     //Array to store the users.
     private ArrayList<User> users;
     //Easily find user ID in the file
     private HashMap<String, Integer> userIDs;
     private int userCount = 0;
-    private String fileLocation;
+    private String fileLocation = DEFAULTFILELOCATION;
     private File Storage = new File(fileLocation);
 
     /**
@@ -63,14 +66,19 @@ public final class RegistrationSystem {
     }
 
     private String encrypt(String password, String salt) {
-        MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        digest.update((password + salt).getBytes());
-        byte data[] = digest.digest();
-        String encrypted = "";
-        for (byte b : data) {
-            encrypted += (Integer.toHexString((b & 0XFF) | 0x100).substring(1, 3));
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            digest.update((password + salt).getBytes());
+            byte data[] = digest.digest();
+            String encrypted = "";
+            for (byte b : data) {
+                encrypted += (Integer.toHexString((b & 0XFF) | 0x100).substring(1, 3));
+            }
+            return encrypted;
+        } catch (NoSuchAlgorithmException ex) {
+            System.out.println("SHA-256 NOT FOUND");
+            return null;
         }
-        return encrypted;
     }
 
     private String generateSalt() {
