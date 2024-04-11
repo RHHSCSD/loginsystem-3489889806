@@ -7,6 +7,7 @@ package loginsystem;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import javax.swing.JFrame;
 
 /**
  *
@@ -16,6 +17,9 @@ public class Main {
 
     public static void main(String args[]) {
         LoginFrame d = new LoginFrame();
-        d.setVisible(true);
+        JFrame frame = new JFrame();
+        frame.setSize(800, 800);
+        frame.add(d);
+        frame.setVisible(true);
     }
 }

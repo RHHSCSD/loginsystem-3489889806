@@ -12,11 +12,6 @@ public class LoginFrame extends javax.swing.JPanel {
 
     RegistrationSystem System = new RegistrationSystem();
 
-    public static void main(String[] args) {
-        LoginFrame d = new LoginFrame();
-        d.setVisible(true);
-    }
-
     /**
      * Creates new form NewJPanel
      */
@@ -140,6 +135,16 @@ public class LoginFrame extends javax.swing.JPanel {
     private void LoginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginButtonMouseClicked
         String username = Username.getText();
         String password = Password.getText();
+        if (System.login(username, password)) {
+            Message.setText("Logged in!");
+        } else {
+            Message.setText("Incorrect credentials.");
+        }
+    }//GEN-LAST:event_LoginButtonMouseClicked
+
+    private void RegisterButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegisterButtonMouseClicked
+        String username = Username.getText();
+        String password = Password.getText();
         switch (System.register(username, "", "", password, new String[3], new String[3])) {
             case 0:
                 Message.setText("Success!");
@@ -162,16 +167,6 @@ public class LoginFrame extends javax.swing.JPanel {
             case 8:
                 Message.setText("Password is too short!!");
                 break;
-        }
-    }//GEN-LAST:event_LoginButtonMouseClicked
-
-    private void RegisterButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegisterButtonMouseClicked
-        String username = Username.getText();
-        String password = Password.getText();
-        if (System.login(username, password)) {
-            Message.setText("Incorrect credentials.");
-        } else {
-            Message.setText("Logged in!");
         }
     }//GEN-LAST:event_RegisterButtonMouseClicked
 

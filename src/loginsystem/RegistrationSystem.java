@@ -191,7 +191,7 @@ public final class RegistrationSystem {
     private void saveUser(User u) {
         try {
             FileWriter writer = new FileWriter(Storage, true);
-            writer.write(u.toString());
+            writer.write(u.toString() + "\n");
             writer.close();
         } catch (IOException e) {
             System.out.println("Cannot write to file.");

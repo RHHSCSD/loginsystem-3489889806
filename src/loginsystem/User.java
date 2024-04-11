@@ -95,6 +95,8 @@ public class User {
     }
 
     public Boolean validatePassword(String password) {
+        System.out.println(password);
+        System.out.println(this.password);
         return password.equals(this.password);
     }
 
