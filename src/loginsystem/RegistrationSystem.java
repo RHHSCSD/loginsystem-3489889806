@@ -199,9 +199,9 @@ public final class RegistrationSystem {
     }
 
     private void clearMemory() {
-        this.users.clear();
+        this.users = new ArrayList<>();
         this.userCount = 0;
-        this.userIDs.clear();
+        this.userIDs = new HashMap<>();
     }
 
     /**
@@ -232,7 +232,7 @@ public final class RegistrationSystem {
                 addUser(temp);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Cannot read file.");
+            System.out.println(e);
         }
 
     }

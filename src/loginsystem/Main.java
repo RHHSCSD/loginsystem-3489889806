@@ -15,7 +15,6 @@ import java.nio.file.Paths;
 public class Main {
 
     public static void main(String args[]) {
-
         LoginFrame d = new LoginFrame();
         d.setVisible(true);
     }
